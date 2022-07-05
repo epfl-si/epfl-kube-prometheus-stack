@@ -39,7 +39,7 @@ commence par `tkgi get-kubeconfig...`) et d'avoir [Helm] installé.
 1. Pour commencer, on veille à installer le repo Helm de prometheus-community :  
   `helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
 1. On récupère le fichier de values :  
-  `helm show values prometheus-community/kube-prometheus-stack > kube-prometheus-stack-epfl-default.yml`
+  `helm show values prometheus-community/kube-prometheus-stack > kube-prometheus-stack-default.yml`
 1. La commande suivante permet d'analyser le manifest généré par Helm (50k lignes) :  
   `helm install epfl-kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-epfl.yml --dry-run --debug`
 1. L'installation (ou le déploiement) est faite de la manière suivante :  
