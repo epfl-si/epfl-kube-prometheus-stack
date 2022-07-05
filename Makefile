@@ -26,3 +26,14 @@ upgrade:
 ## uninstall
 uninstall:
 	helm uninstall epfl-kube-prometheus-stack
+
+
+## info
+info:
+	kubectl cluster-info
+context:
+	kubectl config get-contexts
+
+## diff
+diff:
+	diff --color kube-prometheus-stack-epfl.yml kube-prometheus-stack-default.yml
