@@ -620,10 +620,10 @@ alertmanager:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
     ##
     securityContext:
-      runAsGroup: 199
+      runAsGroup: 190
       runAsNonRoot: true
-      runAsUser: 101
-      fsGroup: 199
+      runAsUser: 190
+      fsGroup: 190
 
     ## ListenLocal makes the Alertmanager server listen on loopback, so that it does not bind against the Pod IP.
     ## Note this is only for the Alertmanager UI, not the gossip communication.
@@ -679,7 +679,7 @@ alertmanager:
 ##
 grafana:
   enabled: true
-  namespaceOverride: ""
+  namespaceOverride: "monitoring"
 
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
   ##
@@ -698,6 +698,7 @@ grafana:
   ##
   defaultDashboardsTimezone: utc
 
+  # CHANGE THE GRAFANA PASSWORD HERE
   adminPassword: prom-operator
 
   rbac:
@@ -742,6 +743,16 @@ grafana:
     # - secretName: grafana-general-tls
     #   hosts:
     #   - grafana.example.com
+
+  ## SecurityContext holds pod-level security attributes and common container settings.
+  ## This defaults to non root user with uid 1000 and gid 2000. *v1.PodSecurityContext  false
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  ##
+  securityContext:
+    runAsGroup: 190
+    runAsNonRoot: true
+    runAsUser: 190
+    fsGroup: 190
 
   sidecar:
     dashboards:
@@ -1376,10 +1387,21 @@ kubeStateMetrics:
 ## Configuration for kube-state-metrics subchart
 ##
 kube-state-metrics:
-  namespaceOverride: ""
+  namespaceOverride: "monitoring"
   rbac:
     create: true
   releaseLabel: true
+
+  ## SecurityContext holds pod-level security attributes and common container settings.
+  ## This defaults to non root user with uid 1000 and gid 2000. *v1.PodSecurityContext  false
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  ##
+  securityContext:
+    runAsGroup: 190
+    runAsNonRoot: true
+    runAsUser: 190
+    fsGroup: 190
+
   prometheus:
     monitor:
       enabled: true
@@ -1430,7 +1452,7 @@ nodeExporter:
 ## Configuration for prometheus-node-exporter subchart
 ##
 prometheus-node-exporter:
-  namespaceOverride: ""
+  namespaceOverride: "monitoring"
   podLabels:
     ## Add the 'node-exporter' label to be used by serviceMonitor to match standard common usage in rules and grafana dashboards
     ##
@@ -1512,7 +1534,7 @@ prometheusOperator:
     patch:
       enabled: true
       image:
-        repository: vsissp-harbor-p.epfl.ch/itsidevfsdt/ingress-nginx/kube-webhook-certgen:v1.1.1
+        repository: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
         tag: v1.1.1
         sha: ""
         pullPolicy: IfNotPresent
@@ -1530,13 +1552,10 @@ prometheusOperator:
       ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
       ##
       securityContext:
-        runAsGroup: 199
-        #runAsGroup: 199
+        runAsGroup: 190
         runAsNonRoot: true
-        #runAsNonRoot: true
-        runAsUser: 199
-        #runAsUser: 2000
-        fsGroup: 199
+        runAsUser: 190
+        fsGroup: 190
 
     # Use certmanager to generate webhook certs
     certManager:
@@ -1727,10 +1746,10 @@ prometheusOperator:
     #     value: "2"
   #   - name: edns0
   securityContext:
-    fsGroup: 65534
-    runAsGroup: 65534
+    fsGroup: 188
+    runAsGroup: 188
     runAsNonRoot: true
-    runAsUser: 65534
+    runAsUser: 188
 
   ## Container-specific security context configuration
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -1742,7 +1761,7 @@ prometheusOperator:
   ## Prometheus-operator image
   ##
   image:
-    repository: vsissp-harbor-p.epfl.ch/itsidevfsdt/prometheus-operator/prometheus-operator
+    repository: quay.io/prometheus-operator/prometheus-operator
     tag: v0.57.0
     sha: ""
     pullPolicy: IfNotPresent
@@ -2619,10 +2638,10 @@ prometheus:
     ## https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md
     ##
     securityContext:
-      runAsGroup: 199
+      runAsGroup: 190
       runAsNonRoot: true
-      runAsUser: 199
-      fsGroup: 199
+      runAsUser: 190
+      fsGroup: 190
 
     ## Priority class assigned to the Pods
     ##
@@ -3154,10 +3173,10 @@ thanosRuler:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
     ##
     securityContext:
-      runAsGroup: 199
+      runAsGroup: 190
       runAsNonRoot: true
-      runAsUser: 101
-      fsGroup: 199
+      runAsUser: 190
+      fsGroup: 190
 
     ## ListenLocal makes the ThanosRuler server listen on loopback, so that it does not bind against the Pod IP.
     ## Note this is only for the ThanosRuler UI, not the gossip communication.
