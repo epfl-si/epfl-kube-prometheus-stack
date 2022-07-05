@@ -28,6 +28,14 @@ uninstall:
 	helm uninstall epfl-kube-prometheus-stack
 
 
+## Port Forwarding
+pf-grafana:
+	kubectl port-forward --namespace monitoring svc/epfl-kube-prometheus-stack-grafana 1337:80
+
+pf-prometheus:
+	kubectl port-forward --namespace monitoring svc/epfl-kube-prometheus-stack-prometheus 9090:9090
+
+
 ## info
 info:
 	kubectl cluster-info
