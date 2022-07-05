@@ -12,12 +12,12 @@ show-values:
 
 ## dry-run the install
 dry-run:
-	helm install epfl-kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-epfl.yml --dry-run --debug
+	helm install epfl-kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-epfl.yml --create-namespace --namespace monitoring --dry-run --debug
 
 ## real install
 install:
 # helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack
-	helm install epfl-kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-epfl.yml --debug
+	helm install epfl-kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack-epfl.yml --create-namespace --namespace monitoring --debug
 
 ## upgrade
 upgrade:
