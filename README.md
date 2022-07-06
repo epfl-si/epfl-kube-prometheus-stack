@@ -57,7 +57,7 @@ et https://github.com/prometheus-operator/prometheus-operator#removal pour plus
 d'information sur la suppression.
 
 Certaines erreurs, comme par exemple celles de [Gatekeeper], ne sont pas
-toujours lisible dans Helm. L'utilistion d'un outil tel que [Lens] est
+toujours lisibles dans Helm. L'utilisation d'un outil tel que [Lens] est
 recommandée.
 
 

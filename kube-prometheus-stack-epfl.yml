@@ -620,10 +620,10 @@ alertmanager:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
     ##
     securityContext:
-      runAsGroup: 190
+      runAsGroup: 196
       runAsNonRoot: true
-      runAsUser: 190
-      fsGroup: 190
+      runAsUser: 196
+      fsGroup: 196
 
     ## ListenLocal makes the Alertmanager server listen on loopback, so that it does not bind against the Pod IP.
     ## Note this is only for the Alertmanager UI, not the gossip communication.
@@ -749,10 +749,10 @@ grafana:
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   ##
   securityContext:
-    runAsGroup: 190
+    runAsGroup: 191
     runAsNonRoot: true
-    runAsUser: 190
-    fsGroup: 190
+    runAsUser: 191
+    fsGroup: 191
 
   sidecar:
     dashboards:
@@ -1397,10 +1397,10 @@ kube-state-metrics:
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   ##
   securityContext:
-    runAsGroup: 190
+    runAsGroup: 192
     runAsNonRoot: true
-    runAsUser: 190
-    fsGroup: 190
+    runAsUser: 192
+    fsGroup: 192
 
   prometheus:
     monitor:
@@ -1448,6 +1448,11 @@ kube-state-metrics:
 ##
 nodeExporter:
   enabled: true
+  securityContext:
+    fsGroup: 189
+    runAsGroup: 189
+    runAsNonRoot: true
+    runAsUser: 189
 
 ## Configuration for prometheus-node-exporter subchart
 ##
@@ -1504,6 +1509,11 @@ prometheus-node-exporter:
     ## If true, create PSPs for node-exporter
     ##
     pspEnabled: false
+  securityContext:
+    fsGroup: 190
+    runAsGroup: 190
+    runAsNonRoot: true
+    runAsUser: 190
 
 ## Manages Prometheus and Alertmanager components
 ##
@@ -1552,10 +1562,10 @@ prometheusOperator:
       ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
       ##
       securityContext:
-        runAsGroup: 190
+        runAsGroup: 193
         runAsNonRoot: true
-        runAsUser: 190
-        fsGroup: 190
+        runAsUser: 193
+        fsGroup: 193
 
     # Use certmanager to generate webhook certs
     certManager:
@@ -2638,10 +2648,10 @@ prometheus:
     ## https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md
     ##
     securityContext:
-      runAsGroup: 190
+      runAsGroup: 194
       runAsNonRoot: true
-      runAsUser: 190
-      fsGroup: 190
+      runAsUser: 194
+      fsGroup: 194
 
     ## Priority class assigned to the Pods
     ##
@@ -3173,10 +3183,10 @@ thanosRuler:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
     ##
     securityContext:
-      runAsGroup: 190
+      runAsGroup: 195
       runAsNonRoot: true
-      runAsUser: 190
-      fsGroup: 190
+      runAsUser: 195
+      fsGroup: 195
 
     ## ListenLocal makes the ThanosRuler server listen on loopback, so that it does not bind against the Pod IP.
     ## Note this is only for the ThanosRuler UI, not the gossip communication.
